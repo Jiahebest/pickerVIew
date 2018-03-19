@@ -31,6 +31,31 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
             pickerView.dataSource = self
         pickerView.delegate = self
         self.view.addSubview(pickerView)
+        
+        
+        //UIButton layerDemo
+        let btn = UIButton(frame: CGRect(x: 100, y: 500, width: 100, height: 100))
+        btn.backgroundColor = UIColor.red
+        /*
+        btn.layer.masksToBounds = true //设置对视图边界修饰
+        btn.layer.cornerRadius = 20 //设置圆角半径
+        */
+        
+        /*
+         btn.layer.borderColor = UIColor.green.cgColor  //边框颜色
+         //注意点：borderColor属性的类型是cgColor，所以要求赋值时要使用颜色的cgColor属性
+         btn.layer.borderWidth = 5   //边框宽度
+         */
+        
+        btn.layer.shadowColor = UIColor.gray.cgColor    //阴影颜色
+        btn.layer.shadowOffset = CGSize(width: -20, height: -20)   //阴影偏移
+        //注意点：width(左右方向)和height(上下方向)两个参数可以是负数，正数表示向右、下方向有阴影，负数表示向左、上方向有阴影
+        btn.layer.shadowOpacity = 0.5     //阴影透明度  1为不透明 0为透明
+        
+        
+        self.view.addSubview(btn)
+       
+        
     }
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 2
