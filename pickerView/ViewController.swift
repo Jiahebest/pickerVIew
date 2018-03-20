@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate ,UISearchBarDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +54,15 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         
         
         self.view.addSubview(btn)
+        
+        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 10, width: self.view.bounds.size.width, height: 30))
+            searchBar.showsSearchResultsButton = true
+            searchBar.showsBookmarkButton = true
+            searchBar.searchBarStyle = .minimal
+            searchBar.showsScopeBar = true
+            searchBar.delegate = self
+        
+            self.view.addSubview(searchBar)
        
         
     }
@@ -69,7 +78,7 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     }
     
     //👋触摸了屏幕后触发的事件
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+     /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         //创建警告控制器实例
         let alert = UIAlertController(title: "警告", message: "拒绝访问", preferredStyle: .alert)
         //添加按钮  UIAlertAction封装了触发方法的选项按钮
@@ -83,8 +92,18 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         alert.addAction(actionCancel)
         //以模式框方式显示视图控制器实例
         self.present(alert, animated: true, completion: nil)
-    }
+    }*/
+    //实现代理协议中的方法成员
+    //单击搜索按钮时触发
+    
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar){
+        searchBar.showsCancelButton = true
 
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        //print("单击搜索按钮")
+        print("搜索文本为:\(searchBar.text ?? "")")
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
