@@ -68,6 +68,24 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         return "\(component),\(row)"
     }
     
+    //👋触摸了屏幕后触发的事件
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        //创建警告控制器实例
+        let alert = UIAlertController(title: "警告", message: "拒绝访问", preferredStyle: .alert)
+        //添加按钮  UIAlertAction封装了触发方法的选项按钮
+        let actionConfirm = UIAlertAction(title: "确定", style: .default) { (UIAlertAction) in
+            print("confirm")
+        }//注意点：handler参数是函数类型，表示单击按钮后要执行的方法
+        let actionCancel = UIAlertAction(title: "cancel", style: .cancel) { (UIAlertAction) in
+            print("cancel")
+        }
+        alert.addAction(actionConfirm)
+        alert.addAction(actionCancel)
+        //以模式框方式显示视图控制器实例
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
